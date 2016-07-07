@@ -37,5 +37,8 @@ ONBUILD RUN composer install --no-scripts --no-autoloader
 # Add project files
 ONBUILD COPY . /app
 
+# Finish composer install, source available
+ONBUILD RUN composer install
+
 # Expose port
 EXPOSE 9000
