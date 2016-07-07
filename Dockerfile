@@ -40,5 +40,8 @@ ONBUILD COPY . /app
 # Finish composer install, source available
 ONBUILD RUN composer install
 
+# Give ownership of app to `www-data`
+ONBUILD RUN chown -R www-data:www-data /app
+
 # Expose port
 EXPOSE 9000
