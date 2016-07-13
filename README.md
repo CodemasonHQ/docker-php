@@ -2,10 +2,7 @@
 
 Lightweight Docker image for PHP and Nginx based on [Alpine](http://alpinelinux.org/). Total image size is a tiny `~90mb`!
 
-> This image was primarily designed for the [Mason CLI](https://github.com/codemasonhq/mason-cli) and easy deployment to [Codemason](http://mason.ci). 
-
-
-This image is designed to be built upon and extended. It works great for development and production.
+> This image was primarily designed for the [Mason CLI](https://github.com/codemasonhq/mason-cli) and easy deployment to [Codemason](http://mason.ci). It is designed to be built upon and extended. It works great in development and production.
 
 When in development your source will be mounted as a volume. Then, when you're ready to build your image, your app source will be baked into the image so it's completely portable. 
 
