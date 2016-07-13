@@ -78,6 +78,7 @@ Now you've got your project setup, you can spin it up with one easy command
 docker-compose up
 ```
 
+You'll be able to access your application at `http://<docker-ip>`, where `<docker-ip>` is either the value of running `boot2docker ip` if you are on Mac or Windows, or `localhost` if you are running Docker natively.
 
 ## Building
 When you've modified your `Dockerfile` rebuild it by running 
