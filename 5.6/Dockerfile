@@ -48,7 +48,7 @@ ONBUILD COPY composer.lock /app
 ONBUILD COPY composer.json /app
 
 # Run composer without scripts, app source not copied in yet
-#ONBUILD RUN composer install --no-scripts --no-autoloader
+ONBUILD RUN composer install --no-scripts --no-autoloader
 
 # Add project files
 ONBUILD COPY . /app
