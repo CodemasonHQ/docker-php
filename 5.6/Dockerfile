@@ -56,6 +56,9 @@ ONBUILD COPY . /app
 # Finish composer install, source available
 ONBUILD RUN composer install
 
+# Give ownership of app to `nginx`
+ONBUILD RUN chown -R nginx:www-data /app
+
 # Expose ports
 EXPOSE 80 443
 
