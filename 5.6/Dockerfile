@@ -23,6 +23,14 @@ RUN apk --update --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing 
   php5-openssl \
   && rm -rf /var/cache/apk/*
 
+# Add start script
+ADD start /usr/local/bin/
+RUN chmod +x /usr/local/bin/start
+
+# Add copyenv script to pass env vars to nginx
+ADD copyenv /usr/local/bin/
+RUN chmod +x /usr/local/bin/copyenv
+
 # Fix volume mount permissions issue
 RUN usermod --uid 1000 nginx && groupmod --gid 50 www-data
 
@@ -33,10 +41,6 @@ RUN composer global require hirak/prestissimo
 # Configure nginx
 ADD conf/nginx.conf /etc/nginx/
 
-# Pass environment variables to nginx
-ADD copyenv /usr/local/bin/
-RUN chmod +x /usr/local/bin/copyenv
-ONBUILD RUN sh /usr/local/bin/copyenv
 
 # Configure php-fpm
 ADD conf/php-fpm.conf /etc/php5/
@@ -68,4 +72,4 @@ ONBUILD RUN chown -R nginx:www-data /app
 EXPOSE 80 443
 
 # Build something amazing
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["sh", "/usr/local/bin/start"]
