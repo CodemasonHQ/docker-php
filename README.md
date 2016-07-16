@@ -1,6 +1,6 @@
 # Mason PHP Docker Image
 
-Lightweight Docker image for PHP and Nginx based on [Alpine](http://alpinelinux.org/). Total image size is a tiny `~90mb`!
+Lightweight Docker image for PHP and Nginx based on [Alpine](http://alpinelinux.org/). Total image size `~100mb` uncompressed and just `34mb` compressed!
 
 > This image was primarily designed for the [Mason CLI](https://github.com/codemasonhq/mason-cli) and easy deployment to [Codemason](http://mason.ci). It is designed to be built upon and extended. It works great in development and production.
 
@@ -31,7 +31,7 @@ $ mason craft --with="php"
   - [Tutorial: Mason CLI for Laravel](#)
 
 
-This will create a `Dockerfile` using `codemasonhq/php` as the base image.
+This will create a `Dockerfile` in your project using `codemasonhq/php` as the base image.
 ```
 FROM codemasonhq/php
 
@@ -84,4 +84,51 @@ docker-compose build
 ```
 
 ## Deploying
-Coming soon 🚀
+Docker is incredible in the development environment but going from development to production in a respectable way is still a bit sketchy. 
+
+This is where Codemason really stands out. We've deliberately built our ecosystem in an opinionated way so deployment is unbelievably simple.
+
+First, initialise a local git repository and commit your files to it
+```
+$ cd pebble
+$ git init
+Initialized empty Git repository in .git/
+$ git add .
+$ git commit -m "initial commit"
+[master (root-commit) f864362] initial commit
+ 77 files changed, 5763 insertions(+)
+ ...
+```
+
+Then, `create` a Codemason application.
+```
+$ mason create
+
+   Creating application on Codemason...
+
+⁣     Application name (spoon-guide-1451)
+⁣     Application path (/Users/ben/pebble)
+⁣               Domain (spoon-guide-1451.mason.ci)
+
+   ✔ Created application
+   ✔ Created remote repository
+   ✔ Added git remote codemason
+```
+
+Now it's time to deploy 🚀
+```
+$ mason deploy
+
+   Deploying application to Codemason...
+
+      Uploading [====================] 100% 0.0s
+       Building [====================] 100% 0.0s, ✔ passed
+      Launching [====================] 100% 0.0s
+
+     *´¨)
+    ¸.•´ ¸.•*´¨) ¸.•*¨)
+   (¸.•´ (¸.•` ¤ Application deployed and running at hello-world-1234.mason.ci
+
+```
+
+
