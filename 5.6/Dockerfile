@@ -55,17 +55,14 @@ WORKDIR /app
 ONBUILD COPY composer.lock /app
 ONBUILD COPY composer.json /app
 
-# Run composer without scripts, app source not copied in yet
-ONBUILD RUN composer install --no-scripts --no-autoloader
-
 # Add project files
 ONBUILD COPY . /app
 
-# Finish composer install, source available
-ONBUILD RUN composer install
-
 # Give ownership of app to `nginx`
 ONBUILD RUN chown -R nginx:www-data /app
+
+# Run composer install, source available
+ONBUILD RUN composer install
 
 # Expose ports
 EXPOSE 80 443
