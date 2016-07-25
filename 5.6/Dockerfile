@@ -17,10 +17,32 @@ RUN apk --update --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing 
   php5-fpm \
   php5-json \
   php5-mcrypt \
+  php5-ctype \
   php5-mysql \
   php5-pdo_mysql \
   php5-phar \
   php5-openssl \
+  php5-soap \
+  php5-gmp \
+  php5-pdo_odbc \
+  php5-pdo \
+  php5-zip \
+  php5-sqlite3 \
+  php5-apcu \
+  php5-pdo_pgsql \
+  php5-bcmath \
+  php5-xcache \
+  php5-odbc \
+  php5-pdo_sqlite \
+  php5-gettext \
+  php5-xmlreader \
+  php5-xmlrpc \
+  php5-bz2 \
+  php5-memcache \
+  php5-mssql \
+  php5-iconv \
+  php5-pdo_dblib \
+  php5-ctype \
   && rm -rf /var/cache/apk/*
 
 # Add start script
