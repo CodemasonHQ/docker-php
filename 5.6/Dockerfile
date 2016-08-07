@@ -3,6 +3,11 @@ FROM alpine:3.4
 # Maintainer 
 MAINTAINER Ben M <git@bmagg.com>
 
+# Fix volume mount permissions issues
+RUN set -x \
+  && addgroup -g 1000 -S www-data \
+  && adduser -u 1000 -D -S -G www-data www-data
+
 # Install some dependencies
 RUN apk --update --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing add \
   supervisor \
@@ -53,9 +58,6 @@ RUN chmod +x /usr/local/bin/start
 ADD copyenv /usr/local/bin/
 RUN chmod +x /usr/local/bin/copyenv
 
-# Fix volume mount permissions issue
-RUN usermod --uid 1000 nginx && groupmod --gid 50 www-data
-
 # Install composer and parallel install plugin
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer global require hirak/prestissimo
@@ -79,9 +81,6 @@ ONBUILD COPY composer.json /app
 
 # Add project files
 ONBUILD COPY . /app
-
-# Give ownership of app to `nginx`
-ONBUILD RUN chown -R nginx:www-data /app
 
 # Run composer install, source available
 ONBUILD RUN composer install
