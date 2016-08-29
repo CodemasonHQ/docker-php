@@ -5,7 +5,7 @@ MAINTAINER Ben M <git@bmagg.com>
 
 # Fix volume mount permissions issues
 RUN set -x \
-  && addgroup -g 1000 -S www-data \
+  && addgroup -g 50 -S www-data \
   && adduser -u 1000 -D -S -G www-data www-data
 
 # Install some dependencies
