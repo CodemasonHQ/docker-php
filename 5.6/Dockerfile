@@ -14,7 +14,6 @@ RUN apk --update --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing 
   nginx \
   nano \
   curl \
-  shadow \
   php5-cli \
   php5-curl \
   php5-dom \
