@@ -48,8 +48,6 @@ RUN apk --update --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing 
   php5-imap \
   php5-soap \
   php5-memcache \
-  php5-redis@testing \
-  php5-xdebug@community \
   php5-xsl \
   php5-ldap \
   && rm -rf /var/cache/apk/*
