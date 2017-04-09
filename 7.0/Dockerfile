@@ -9,36 +9,39 @@ RUN set -x \
   && adduser -u 1000 -D -S -G www-data www-data
 
 # Install some dependencies
-RUN apk --update --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing add \
-  libssh2 libpng freetype libjpeg-turbo libgcc libxml2 libstdc++ icu-libs libltdl libmcrypt \
+RUN apk --update add \
   supervisor \
   nginx \
   nano \
   curl \
   php7 \
   php7-common \
-  php7-cli \
   php7-fpm \
-  php7-pdo_mysql \
-  php7-mysqli \
-  php7-mysqlnd \
-  php7-mcrypt \
-  php7-session \
-  php7-json \
-  php7-zlib \
-  php7-xml \
-  php7-xmlwriter \
-  php7-pdo \
-  php7-curl \
-  php7-opcache \
-  php7-ctype \
-  php7-mbstring \
-  php7-soap \
   php7-bcmath \
   php7-dom \
-  php7-xmlreader \
+  php7-ctype \
+  php7-curl \
+  php7-gd \
+  php7-iconv \
+  php7-intl \
+  php7-json \
+  php7-mbstring \
+  php7-mcrypt \
+  php7-mysqlnd \
+  php7-opcache \
   php7-openssl \
+  php7-pdo \
+  php7-pdo_mysql \
+  php7-pdo_pgsql \
+  php7-pdo_sqlite \
   php7-phar \
+  php7-posix \
+  php7-session \
+  php7-soap \
+  php7-xml \
+  php7-zip \
+  php7-zlib \
+  && ln -s /usr/bin/php7 /usr/bin/php \
   && rm -rf /var/cache/apk/*
 
 # Add start script
@@ -57,8 +60,8 @@ RUN composer global require hirak/prestissimo
 ADD conf/nginx.conf /etc/nginx/
 
 # Configure php-fpm
-ADD conf/php-fpm.conf /etc/php5/
-ADD conf/php.ini /etc/php5/
+ADD conf/php-fpm.conf /etc/php7/
+ADD conf/php.ini /etc/php7/
 
 # Configure supervisor
 ADD conf/supervisord.conf /etc/supervisor/conf.d/
