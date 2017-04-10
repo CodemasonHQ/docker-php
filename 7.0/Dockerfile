@@ -74,7 +74,7 @@ ADD conf/php.ini /etc/php7/
 ADD conf/supervisord.conf /etc/supervisor/conf.d/
 
 # Replace configuration placeholder values 
-RUN sed -i "s|@{{DOCUMENT_ROOT}}|$DOCUMENT_ROOT|g" /etc/nginx/nginx.conf \
+ONBUILD RUN sed -i "s|@{{DOCUMENT_ROOT}}|$DOCUMENT_ROOT|g" /etc/nginx/nginx.conf \
   && sed -i "s|@{{UPLOAD_MAX_FILESIZE}}|$UPLOAD_MAX_FILESIZE|g" /etc/php7/php.ini \
   && sed -i "s|@{{POST_MAX_SIZE}}|$POST_MAX_SIZE|g" /etc/php7/php.ini \
   && sed -i "s|@{{MEMORY_LIMIT}}|$MEMORY_LIMIT|g" /etc/php7/php.ini \
