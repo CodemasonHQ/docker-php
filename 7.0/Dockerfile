@@ -3,6 +3,13 @@ FROM alpine:3.5
 # Maintainer 
 MAINTAINER Ben M <git@bmagg.com>
 
+# Configuration
+ENV DOCUMENT_ROOT="/app/public" \
+  UPLOAD_MAX_FILESIZE="2M" \
+  POST_MAX_SIZE="8M" \
+  MEMORY_LIMIT="128M" \
+  TIMEZONE="UTC"
+
 # Fix volume mount permissions issues
 RUN set -x \
   && addgroup -g 50 -S www-data \
@@ -65,6 +72,13 @@ ADD conf/php.ini /etc/php7/
 
 # Configure supervisor
 ADD conf/supervisord.conf /etc/supervisor/conf.d/
+
+# Replace configuration placeholder values 
+RUN sed -i "s|@{{DOCUMENT_ROOT}}|$DOCUMENT_ROOT|g" /etc/nginx/nginx.conf \
+  && sed -i "s|@{{UPLOAD_MAX_FILESIZE}}|$UPLOAD_MAX_FILESIZE|g" /etc/php7/php.ini \
+  && sed -i "s|@{{POST_MAX_SIZE}}|$POST_MAX_SIZE|g" /etc/php7/php.ini \
+  && sed -i "s|@{{MEMORY_LIMIT}}|$MEMORY_LIMIT|g" /etc/php7/php.ini \
+  && sed -i "s|@{{TIMEZONE}}|$TIMEZONE|g" /etc/php7/php.ini
 
 # Set our workdir
 WORKDIR /app
