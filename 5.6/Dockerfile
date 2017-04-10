@@ -77,8 +77,7 @@ ADD conf/supervisord.conf /etc/supervisor/conf.d/
 # Set our workdir
 WORKDIR /app
 
-# Copy dep files first to utilise caching
-ONBUILD COPY composer.lock /app
+# Copy dependency files
 ONBUILD COPY composer.json /app
 
 # Add project files
