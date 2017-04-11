@@ -8,7 +8,7 @@ ENV DOCUMENT_ROOT="/app/public" \
   UPLOAD_MAX_FILESIZE="2M" \
   POST_MAX_SIZE="8M" \
   MEMORY_LIMIT="128M" \
-  TIMEZONE="UTC"
+  TIMEZONE="UTC" 
 
 # Fix volume mount permissions issues
 RUN set -x \
@@ -48,6 +48,7 @@ RUN apk --update add \
   php7-xml \
   php7-zip \
   php7-zlib \
+  php7-ldap \
   && ln -s /usr/bin/php7 /usr/bin/php \
   && rm -rf /var/cache/apk/*
 
