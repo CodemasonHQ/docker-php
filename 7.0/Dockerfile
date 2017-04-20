@@ -56,13 +56,8 @@ RUN apk --update add \
 ADD start /usr/local/bin/
 RUN chmod +x /usr/local/bin/start
 
-# Add copyenv script to pass env vars to nginx
-ADD copyenv /usr/local/bin/
-RUN chmod +x /usr/local/bin/copyenv
-
-# Install composer and parallel install plugin
+# Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer global require hirak/prestissimo
 
 # Configure nginx
 ADD conf/nginx.conf /etc/nginx/
