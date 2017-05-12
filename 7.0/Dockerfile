@@ -61,6 +61,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Configure nginx
 ADD conf/nginx.conf /etc/nginx/
+RUN chmod -R 755 /var/lib/nginx
 
 # Configure php-fpm
 ADD conf/php-fpm.conf /etc/php7/
