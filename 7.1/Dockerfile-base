@@ -51,6 +51,7 @@ RUN apk --update add \
   php7-xmlreader \
   php7-xmlwriter \
   php7-simplexml \
+  php7-pcntl \
   php7-zip \
   php7-zlib \
   php7-ldap \
