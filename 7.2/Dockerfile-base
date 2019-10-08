@@ -55,6 +55,7 @@ RUN apk --update add \
   php7-zip \
   php7-zlib \
   php7-ldap \
+  php7-redis \
   && rm -rf /var/cache/apk/*
 
 # Add start script
