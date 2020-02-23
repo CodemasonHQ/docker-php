@@ -7,6 +7,14 @@ RUN apk --update add \
   nano \
   curl
 
+# Enable PHP extensions 
+RUN docker-php-ext-install \
+  opcache \ 
+  bcmath \
+  pdo_mysql \
+  pcntl
+
+
 # Configure nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
 RUN rm /etc/nginx/conf.d/default.conf
