@@ -2,6 +2,7 @@ FROM php:7.4-fpm-alpine
 
 # Install some dependencies
 RUN apk --update add \
+  git \
   supervisor \
   nginx \
   nano \
